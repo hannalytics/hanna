@@ -8,6 +8,7 @@ const rl = readline.createInterface({
 
 const GRAPHQL_QUERY = username => `{
 	user(username: "${username}") {
+		username
 		name
 		tagline
 		isEvangelist
