@@ -1,5 +1,5 @@
 <script>
-	import user from '$lib/user.json';
+	import user from '$lib/data/user.json';
 
 	console.log(user);
 </script>

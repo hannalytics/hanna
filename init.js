@@ -57,7 +57,7 @@ rl.question('What is you hashnode username? ', async answer => {
 	}
 
 	console.log('Fetched user.');
-	fs.writeFileSync('src/lib/user.json', JSON.stringify(user, null, 2));
+	fs.writeFileSync('src/lib/data/user.json', JSON.stringify(user, null, 2));
 
 	rl.close();
 })
