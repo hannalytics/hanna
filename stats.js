@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 
 const data = JSON.parse(fs.readFileSync('src/lib/data/user.json', 'utf8'));
+console.log('Fetching stats for', data.name);
 
 const POSTS_QUERY = username => (page = 0) => `{
 	user(username: "${username}") {
@@ -10,16 +11,17 @@ const POSTS_QUERY = username => (page = 0) => `{
 		publication {
 			posts(page: ${page}) {
 				cuid
+				title
 				type
 				popularity
 				totalReactions
 			}
 		}
-	};
+	}
 }`;
 
 async function fetchPaginatedAPI(username, page = 0) {
-	const res = await fetch('https://api.hashnode.dev/', {
+	const res = await fetch('https://api.hashnode.com/', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -29,7 +31,7 @@ async function fetchPaginatedAPI(username, page = 0) {
 
 	const json = await res.json();
 	const posts = json.data.user.publication.posts;
-	
+
 	if (posts.length) {
 		return [...posts, ...await fetchPaginatedAPI(username, page + 1)];
 	} else {
@@ -37,22 +39,14 @@ async function fetchPaginatedAPI(username, page = 0) {
 	}
 }
 
-const _handler = async function() {
-	const {username} = data;
-	const morePosts = await fetchPaginatedAPI(username);
+const {username} = data;
+const morePosts = await fetchPaginatedAPI(username);
 
-	const prevPosts = JSON.parse(fs.readFileSync('src/lib/data/posts.json', 'utf8'));
+const prevPosts = JSON.parse(fs.readFileSync('src/lib/data/posts.json', 'utf8'));
 
-	prevPosts.push({
-		timestamp: new Date().toISOString(),
-		posts: morePosts,
-	});
+prevPosts.push({
+	timestamp: new Date().toISOString(),
+	posts: morePosts,
+});
 
-	fs.writeFileSync('src/lib/data/posts.json', JSON.stringify(prevPosts));
-
-	return {
-		statusCode: 200,
-	};
-};
-
-export const handler = schedule("@hourly", _handler);
+fs.writeFileSync('src/lib/data/posts.json', JSON.stringify(prevPosts));
