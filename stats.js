@@ -8,6 +8,7 @@ console.log('Fetching stats for', data.name);
 const POSTS_QUERY = username => (page = 0) => `{
 	user(username: "${username}") {
 		publicationDomain
+		numFollowers
 		publication {
 			posts(page: ${page}) {
 				cuid
