@@ -4,7 +4,7 @@ on:
     - cron: '0 * * * *'
 
 jobs:
-  collect_stats:
+  collect_data:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v2
