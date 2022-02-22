@@ -32,11 +32,15 @@ async function fetchPaginatedAPI(username, page = 0) {
 
 	const json = await res.json();
 	const posts = json.data.user.publication.posts;
+	const user = json.data.user;
 
 	if (posts.length) {
-		return [...posts, ...await fetchPaginatedAPI(username, page + 1)];
+		return {
+			posts: [...posts, ...await fetchPaginatedAPI(username, page + 1)],
+			user
+		};
 	} else {
-		return posts;
+		return {posts, user};
 	}
 }
 
