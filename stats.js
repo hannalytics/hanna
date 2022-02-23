@@ -9,6 +9,7 @@ const POSTS_QUERY = username => (page = 0) => `{
 	user(username: "${username}") {
 		publicationDomain
 		numFollowers
+        numFollowing
         numPosts
         numReactions
 		publication {
@@ -36,24 +37,20 @@ async function fetchPaginatedAPI(username, page = 0) {
 	const posts = json.data.user.publication.posts;
 	const user = json.data.user;
 
-	if (posts.length) {
-		return {
-			posts: [...posts, ...(await fetchPaginatedAPI(username, page + 1)).posts],
-			user
-		};
-	} else {
-		return {posts, user};
-	}
+    if (user.posts.length > 0) {
+        user.publication.posts = user.publication.posts.concat(await fetchPaginatedAPI(username, page + 1).publication.posts);
+    }
+
+    return user;
 }
 
 const {username} = data;
-const {posts: morePosts, user} = await fetchPaginatedAPI(username);
+const user = await fetchPaginatedAPI(username);
 
 const prevPosts = JSON.parse(fs.readFileSync('src/lib/data/stats.json', 'utf8'));
 
 prevPosts.push({
 	timestamp: new Date().toISOString(),
-	posts: morePosts,
     user
 });
 
