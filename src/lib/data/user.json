@@ -1,1 +1,19 @@
-{}
+{
+  "username": "SiddharthShyniben",
+  "name": "Siddharth Shyniben",
+  "tagline": "Making wild out-on-a-limb schemes which can change the world if they work, but probably wont.",
+  "isEvangelist": false,
+  "socialMedia": {
+    "twitter": "https://twitter.com/SiddharthShyn",
+    "github": "https://github.com/SiddharthShyniben/",
+    "stackoverflow": "https://stackoverflow.com/users/15511745/siddharth-shyniben",
+    "linkedin": "",
+    "google": null,
+    "facebook": "",
+    "website": "https://siddu.tech"
+  },
+  "photo": "https://cdn.hashnode.com/res/hashnode/image/upload/v1635327742035/ByZtiMlBX.jpeg",
+  "coverImage": "https://cdn.hashnode.com/res/hashnode/image/upload/v1638000571902/-upTGCOnL.png",
+  "blogHandle": "siddharthshyniben",
+  "publicationDomain": "blog.siddu.tech"
+}
