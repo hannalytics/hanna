@@ -91,22 +91,34 @@ const reactionsOptions = {
 </script>
 
 <div class='container p-10 bg-russian-violet-900 text-white'>
-	<LineChart
-		data={followersData}
-		options={followersOptions}
-	/>
+    {#if followersData.length > 0}
+        <LineChart
+            data={followersData}
+            options={followersOptions}
+        />
+    {:else}
+        <h1>uh oh, no followers data 😅</h1>
+    {/if}
 
 	<div class='h-10'></div>
 
-	<LineChart
-		data={popularityData}
-		options={popularityOptions}
-	/>
+    {#if popularityData.length > 0}
+        <LineChart
+            data={popularityData}
+            options={popularityOptions}
+        />
+    {:else}
+        <h1>uh oh, no popularity data 😅</h1>
+    {/if}
 
 	<div class='h-10'></div>
 
-	<LineChart
-		data={reactionsData}
-		options={reactionsOptions}
-	/>
+    {#if reactionsData.length > 0}
+        <LineChart
+            data={reactionsData}
+            options={reactionsOptions}
+        />
+    {:else}
+        <h1>uh oh, no reactions data 😅</h1>
+    {/if}
 </div>
