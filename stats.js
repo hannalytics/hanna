@@ -36,7 +36,7 @@ async function fetchPaginatedAPI(username, page = 0) {
 
 	if (posts.length) {
 		return {
-			posts: [...posts, ...(await fetchPaginatedAPI(username, page + 1))],
+			posts: [...posts, ...(await fetchPaginatedAPI(username, page + 1)).posts],
 			user
 		};
 	} else {
