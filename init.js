@@ -13,6 +13,10 @@ const GRAPHQL_QUERY = username => `{
 		name
 		tagline
 		isEvangelist
+        numFollowers
+        numFollowing
+        numPosts
+        numReactions
 		socialMedia {
 			twitter
 			github

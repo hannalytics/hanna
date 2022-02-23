@@ -1,124 +1,87 @@
 <script>
-import {LineChart} from '@carbon/charts-svelte';
-import '@carbon/charts/styles-g100.min.css';
-import 'carbon-components/css/carbon-components.min.css';
-
-import { onMount } from 'svelte';
-
+import Line from "svelte-chartjs/src/Line.svelte"
 import data from '$lib/data/stats.json';
 
 function roundToHour(date) {
-	const p = 60 * 60 * 1000; // milliseconds in an hour
-	return new Date(Math.round(date.getTime() / p) * p);
+    const p = 60 * 60 * 1000; // milliseconds in an hour
+    return new Date(Math.round(date.getTime() / p) * p);
 }
 
-const niceDate = date => roundToHour(new Date(date)).toLocaleString('en-US', {
-	month: 'short',
-	day: 'numeric',
-	hour: 'numeric',
+const niceDate = date => new Date(date).toLocaleString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
 });
 
-// TODO: put this in script
-const followersData = data.map(x => ({
-	group: 'followers',
-	key: niceDate(x.timestamp),
-	value: x.user.numFollowers,
-}));
-const followersOptions = {
-	title: 'Followers over time',
-	height: '400px',
-	axes: {
-		bottom: {
-			title: 'Time',
-			mapsTo: 'key',
-			scaleType: 'labels'
-		},
-		left: {
-			title: 'popularity',
-			mapsTo: 'value',
-			scaleType: 'linear'
-		}
-	},
-	curve: 'curveMonotoneX'
+const labels = data.map(d => niceDate(d.timestamp));
+const options = {
+    scaleFontColor: '#fff',
+};
+
+const d1 = {
+    labels,
+    datasets: [
+        {
+            label: 'Followers',
+            data: data.map(d => d.stats.followers),
+            fill: false,
+            borderColor: '#FFFFB3',
+            tension: 0.1
+        },
+        {
+            label: 'Following',
+            data: data.map(d => d.stats.following),
+            fill: false,
+            borderColor: '#DCAB6B',
+            tension: 0.1
+        },
+    ]
 }
 
-const popularityData = data.map(x => ({
-	group: 'popularity',
-	key: niceDate(x.timestamp),
-	value: x.posts.reduce((acc, cur) => acc + cur.popularity, 0)
-}));
-const popularityOptions = {
-	title: 'Popularity over time',
-	height: '400px',
-	axes: {
-		bottom: {
-			title: 'Time',
-			mapsTo: 'key',
-			scaleType: 'labels'
-		},
-		left: {
-			title: 'Popularity',
-			mapsTo: 'value',
-			scaleType: 'linear'
-		}
-	},
-	curve: 'curveMonotoneX'
-}
+const d2 = {
+    labels,
+    datasets: [
+        {
+            label: 'Posts',
+            data: data.map(d => d.stats.posts),
+            fill: false,
+            borderColor: '#8C93A8',
+            tension: 0.1
+        },
+    ]
+};
 
-const reactionsData = data.map(x => ({
-	group: 'Reactions',
-	key: niceDate(x.timestamp),
-	value: x.posts.reduce((acc, cur) => acc + cur.totalReactions, 0)
-}));
-const reactionsOptions = {
-	title: 'Reactions over time',
-	height: '400px',
-	axes: {
-		bottom: {
-			title: 'Time',
-			mapsTo: 'key',
-			scaleType: 'labels'
-		},
-		left: {
-			title: 'Reactions',
-			mapsTo: 'value',
-			scaleType: 'linear'
-		}
-	},
-	curve: 'curveMonotoneX'
-}
+const d3 = {
+    labels,
+    datasets: [
+        {
+            label: 'Reactions',
+            data: data.map(d => d.stats.reactions),
+            fill: false,
+            borderColor: '#ee5622',
+            tension: 0.1
+        },
+    ]
+};
 
+
+const d4 = {
+    labels,
+    datasets: [
+        {
+            label: 'Popularity',
+            data: data.map(d => d.stats.popularity),
+            fill: false,
+            borderColor: '#e234e2',
+            tension: 0.1
+        },
+    ]
+};
 </script>
 
-<div class='container p-10 bg-russian-violet-900 text-white'>
-    {#if followersData.length > 0}
-        <LineChart
-            data={followersData}
-            options={followersOptions}
-        />
-    {:else}
-        <h1>uh oh, no followers data 😅</h1>
-    {/if}
-
-	<div class='h-10'></div>
-
-    {#if popularityData.length > 0}
-        <LineChart
-            data={popularityData}
-            options={popularityOptions}
-        />
-    {:else}
-        <h1>uh oh, no popularity data 😅</h1>
-    {/if}
-
-	<div class='h-10'></div>
-
-    {#if reactionsData.length > 0}
-        <LineChart
-            data={reactionsData}
-            options={reactionsOptions}
-        />
-    {:else}
-        <h1>uh oh, no reactions data 😅</h1>
-    {/if}
+<div class='p-10 bg-russian-violet-900 text-white w-[75vw] m-auto'>
+    <Line data={d1} {options}/>
+    <Line data={d2} {options}/>
+    <Line data={d3} {options}/>
+    <Line data={d4} {options}/>
 </div>

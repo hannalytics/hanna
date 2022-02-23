@@ -1,8 +1,13 @@
 <script>
-	import user from '$lib/data/user.json';
+	import _user from '$lib/data/user.json';
     import stats from '$lib/data/stats.json';
 
-    const latestStats = stats[stats.length - 1];
+    const firstStat = stats[stats.length - 1] ?? {user: _user};
+
+    const user = {
+        ..._user,
+        ...firstStat.user
+    }
 </script>
 
 <div class='bg-russian-violet-600'>
@@ -31,22 +36,22 @@
 
 		<div class="flex justify-around w-max mb-4">
 			<div class='border-gray-500'>
-				<h3 class="text-2xl font-bold">{latestStats.numFollowers}</h3>
+				<h3 class="text-2xl font-bold">{user.numFollowers}</h3>
 				<p class='text-lg font-semibold text-gray-400'>Followers</p>
 			</div>
 			<div class="mx-5 border"></div>
 			<div class='border-gray-500'>
-				<h3 class="text-2xl font-bold">{latestStats.numFollowing}</h3>
+				<h3 class="text-2xl font-bold">{user.numFollowing}</h3>
 				<p class='text-lg font-semibold text-gray-400'>Following</p>
 			</div>
 			<div class="mx-5 border"></div>
 			<div class='border-gray-500'>
-				<h3 class="text-2xl font-bold">{latestStats.numPosts}</h3>
+				<h3 class="text-2xl font-bold">{user.numPosts}</h3>
 				<p class='text-lg font-semibold text-gray-400'>Posts</p>
 			</div>
 			<div class="mx-5 border"></div>
 			<div class='border-gray-500'>
-				<h3 class="text-2xl font-bold">{latestStats.numReactions}</h3>
+				<h3 class="text-2xl font-bold">{user.numReactions}</h3>
 				<p class='text-lg font-semibold text-gray-400'>Reactions</p>
 			</div>
 		</div>

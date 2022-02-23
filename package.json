@@ -12,6 +12,7 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@carbon/charts-svelte": "^0.54.12",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.10.1",
@@ -33,7 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@carbon/charts-svelte": "^0.54.12",
-		"node-fetch": "^3.2.0"
+		"node-fetch": "^3.2.0",
+		"svelte-chartjs": "^1.1.4"
 	}
 }
