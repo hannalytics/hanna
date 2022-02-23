@@ -18,11 +18,13 @@ const niceDate = date => roundToHour(new Date(date)).toLocaleString('en-US', {
 	hour: 'numeric',
 });
 
+console.log('data', data);
+
 // TODO: put this in script
 const followersData = data.map(x => ({
 	group: 'followers',
 	key: niceDate(x.timestamp),
-	value: x.followers,
+	value: x.user.numFollowers,
 }));
 const followersOptions = {
 	title: 'Followers over time',

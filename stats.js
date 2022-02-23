@@ -45,13 +45,14 @@ async function fetchPaginatedAPI(username, page = 0) {
 }
 
 const {username} = data;
-const morePosts = await fetchPaginatedAPI(username);
+const {posts: morePosts, user} = await fetchPaginatedAPI(username);
 
 const prevPosts = JSON.parse(fs.readFileSync('src/lib/data/posts.json', 'utf8'));
 
 prevPosts.push({
 	timestamp: new Date().toISOString(),
 	posts: morePosts,
+    user
 });
 
 fs.writeFileSync('src/lib/data/posts.json', JSON.stringify(prevPosts));
