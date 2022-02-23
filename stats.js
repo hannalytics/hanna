@@ -9,6 +9,8 @@ const POSTS_QUERY = username => (page = 0) => `{
 	user(username: "${username}") {
 		publicationDomain
 		numFollowers
+        numPosts
+        numReactions
 		publication {
 			posts(page: ${page}) {
 				cuid
@@ -47,7 +49,7 @@ async function fetchPaginatedAPI(username, page = 0) {
 const {username} = data;
 const {posts: morePosts, user} = await fetchPaginatedAPI(username);
 
-const prevPosts = JSON.parse(fs.readFileSync('src/lib/data/posts.json', 'utf8'));
+const prevPosts = JSON.parse(fs.readFileSync('src/lib/data/stats.json', 'utf8'));
 
 prevPosts.push({
 	timestamp: new Date().toISOString(),
@@ -55,4 +57,4 @@ prevPosts.push({
     user
 });
 
-fs.writeFileSync('src/lib/data/posts.json', JSON.stringify(prevPosts));
+fs.writeFileSync('src/lib/data/stats.json', JSON.stringify(prevPosts));

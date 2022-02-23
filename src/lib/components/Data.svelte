@@ -5,7 +5,7 @@ import 'carbon-components/css/carbon-components.min.css';
 
 import { onMount } from 'svelte';
 
-import data from '$lib/data/posts.json';
+import data from '$lib/data/stats.json';
 
 function roundToHour(date) {
 	const p = 60 * 60 * 1000; // milliseconds in an hour
@@ -17,8 +17,6 @@ const niceDate = date => roundToHour(new Date(date)).toLocaleString('en-US', {
 	day: 'numeric',
 	hour: 'numeric',
 });
-
-console.log('data', data);
 
 // TODO: put this in script
 const followersData = data.map(x => ({

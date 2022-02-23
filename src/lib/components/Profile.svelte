@@ -1,7 +1,8 @@
 <script>
 	import user from '$lib/data/user.json';
+    import stats from '$lib/data/stats.json';
 
-	console.log(user);
+    const latestStats = stats[stats.length - 1];
 </script>
 
 <div class='bg-russian-violet-600'>

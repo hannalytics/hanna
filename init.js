@@ -22,12 +22,8 @@ const GRAPHQL_QUERY = username => `{
 			facebook
 			website
 		}
-		numFollowing
-		numFollowers
 		photo
 		coverImage
-		numPosts
-		numReactions
 		blogHandle
 		publicationDomain
 	}
