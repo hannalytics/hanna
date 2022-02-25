@@ -17,7 +17,7 @@ netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com
 Netlify will ask to fork the repo on your GitHub account. Fork it, then Rename
 the `.github.sample` folder to `.github`
 
-Run the init.js script: `node init.js`
+Install dependencies with `npm i`, Then run the init.js script: `node init.js`
 
 Push your changes to GitHub, and verify if the GitHub action has started running
 in the actions tab. If it runs, you are all set!
