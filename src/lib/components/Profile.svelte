@@ -11,9 +11,13 @@
 </script>
 
 <div class="bg-russian-violet-600">
-	<div class="container m-auto py-5">
+	<div class="container mx-auto py-5 w-[90vw] sm:w-[75vw]">
 		<img src={user.coverImage} alt="{user.name}'s banner" class="mb-10" />
-		<div class="flex flex-1 justify-between items-center">
+
+		<div class="flex flex-1 justify-between items-center mb-10">
+			<div class='xl:block hidden'>
+				<img src={user.photo} alt={user.name} class="rounded-full h-32" />
+			</div>
 			<div>
 				<h1 class="text-3xl font-bold">
 					{user.name}
@@ -32,27 +36,24 @@
 				</h1>
 				<h2 class="text-lg text-gray-400">{user.tagline}</h2>
 			</div>
-			<div>
-				<img src={user.photo} alt={user.name} class="rounded-full h-32" />
-			</div>
 		</div>
 
-		<div class="flex justify-around w-max mb-4">
+		<div class="flex justify-between w-max mb-4 xs:flex-row flex-col">
 			<div class="border-gray-500">
 				<h3 class="text-2xl font-bold">{user.numFollowers}</h3>
 				<p class="text-lg font-semibold text-gray-400">Followers</p>
 			</div>
-			<div class="mx-5 border" />
+			<div class="mx-5 xs:border my-3 xs:my-0" />
 			<div class="border-gray-500">
 				<h3 class="text-2xl font-bold">{user.numFollowing}</h3>
 				<p class="text-lg font-semibold text-gray-400">Following</p>
 			</div>
-			<div class="mx-5 border" />
+			<div class="mx-5 xs:border my-3 xs:my-0" />
 			<div class="border-gray-500">
 				<h3 class="text-2xl font-bold">{user.numPosts}</h3>
 				<p class="text-lg font-semibold text-gray-400">Posts</p>
 			</div>
-			<div class="mx-5 border" />
+			<div class="mx-5 xs:border my-3 xs:my-0" />
 			<div class="border-gray-500">
 				<h3 class="text-2xl font-bold">{user.numReactions}</h3>
 				<p class="text-lg font-semibold text-gray-400">Reactions</p>
@@ -61,7 +62,7 @@
 
 		<div class="flex">
 			{#if user.socialMedia.twitter}
-				<a class="px-4 py-2" href={user.socialMedia.twitter} target="social">
+				<a class="px-4 pl-0 py-2" href={user.socialMedia.twitter} target="social">
 					<svg
 						class="text-blue-500 hover:text-blue-400"
 						xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +84,7 @@
 			{#if user.socialMedia.github}
 				<a class="px-4 py-2" href={user.socialMedia.github} target="social">
 					<svg
-						class="text-gray-600 hover:text-gray-500"
+						class="text-gray-500 hover:text-gray-500"
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
 						height="24"

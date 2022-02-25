@@ -81,16 +81,24 @@ $: d4 = {
 };
 </script>
 
-<div class='p-10 bg-russian-violet-900 text-white w-[75vw] m-auto'>
+<div class='p-5 sm:p-10 bg-russian-violet-900 text-white w-screen xl:w-[75vw] mx-auto'>
 	<ul class='flex flex-wrap border-b border-gray-200 border-gray-700'>
 		<button on:click={e => length = 24}>Today</button>
 		<button on:click={e => length = 168}>This week</button>
 		<button on:click={e => length = 720}>This Month</button>
 		<button on:click={e => length = Infinity}>Everything</button>
 	</ul>
+	<div class='h-20'></div>
+
 	<Line data={d1} {options}/>
+	<div class='h-20'></div>
+
 	<Line data={d2} {options}/>
+	<div class='h-20'></div>
+
 	<Line data={d3} {options}/>
+	<div class='h-20'></div>
+
 	<Line data={d4} {options}/>
 </div>
 

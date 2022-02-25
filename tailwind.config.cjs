@@ -1,7 +1,13 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
+		screens: {
+			xs: '500px',
+			...defaultTheme.screens,
+		},
 		extend: {
 			filter: ['hover'],
 			colors: {

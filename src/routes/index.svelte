@@ -5,7 +5,7 @@
 	import Footer from '$lib/components/Footer.svelte';
 </script>
 
-<div class='bg-russian-violet-900 text-white'>
+<div class='bg-russian-violet-900 text-white w-screen'>
 	<Navbar />
 	<Profile />
 	<Data />
