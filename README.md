@@ -5,7 +5,7 @@ with an extra "n".
 
 It's fully customizable, free and open source forever.
 
-TODO: screenshot
+![Hanna in action](./hanna.png)
 
 ## Get it!
 
